@@ -1533,7 +1533,6 @@ export function calculateGridPositions(events: Types.CalendarEventData[]): Array
     })
     .sort((a, b) => a.startMinute - b.startMinute);
 
-  const lanes: number[] = [];
   const positioned: Array<{
     event: Types.CalendarEventData;
     startMinute: number;
@@ -1542,20 +1541,34 @@ export function calculateGridPositions(events: Types.CalendarEventData[]): Array
     laneCount: number;
   }> = [];
 
-  timed.forEach((ev) => {
-    // Find first lane that is free
-    let laneIndex = lanes.findIndex((end) => end <= ev.startMinute);
-    if (laneIndex === -1) {
-      laneIndex = lanes.length;
-      lanes.push(ev.endMinute);
-    } else {
-      lanes[laneIndex] = ev.endMinute;
-    }
-    positioned.push({ ...ev, lane: laneIndex, laneCount: 0 });
-  });
+  const active: Array<{ endMinute: number; lane: number; index: number }> = [];
 
-  const laneCount = lanes.length;
-  positioned.forEach((p) => (p.laneCount = laneCount));
+  timed.forEach((ev) => {
+    // Remove events that have ended
+    for (let i = active.length - 1; i >= 0; i -= 1) {
+      if (active[i].endMinute <= ev.startMinute) {
+        active.splice(i, 1);
+      }
+    }
+
+    // Find the lowest available lane
+    let lane = 0;
+    while (active.some((a) => a.lane === lane)) {
+      lane += 1;
+    }
+
+    const index = positioned.push({ ...ev, lane, laneCount: active.length + 1 }) - 1;
+    active.push({ endMinute: ev.endMinute, lane, index });
+
+    // Update lane counts for all currently active events
+    const groupSize = active.length;
+    active.forEach((a) => {
+      const p = positioned[a.index];
+      if (groupSize > p.laneCount) {
+        p.laneCount = groupSize;
+      }
+    });
+  });
 
   return positioned;
 }
