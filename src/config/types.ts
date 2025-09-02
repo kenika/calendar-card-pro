@@ -203,6 +203,10 @@ export interface CalendarEventData {
   readonly end: { readonly dateTime?: string; readonly date?: string };
   summary?: string;
   location?: string;
+  /** Unfiltered location for event details */
+  rawLocation?: string;
+  /** Full description for event details */
+  description?: string;
   _entityId?: string;
   _entityLabel?: string;
   /** Labels from all calendars this event belongs to */

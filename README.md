@@ -270,7 +270,7 @@ Each calendar gets a filter button in the header so you can toggle its events on
 - Weekend and today columns can be tinted with `weekend_day_color` and `today_day_color`.
 - Event blocks respect `show_time`, `show_single_allday_time`, `show_end_time`, and `show_location` configuration.
 - Weekday headers can show daily weather (icon, high, low) aligned to the top-right.
-- Tapping an event with `tap_action: expand` opens a popup (25% width/height) with stacked weather information and a scrollable description.
+- Tapping an event with `tap_action: expand` opens a popup (25% width/height) with stacked weather information, full location, and a scrollable description.
 - Hourly grid lines span the time axis and day columns to provide temporal context.
 
 ### Core Settings
@@ -306,6 +306,8 @@ entities:
 | allowlist              | string  | RegExp pattern to specify events to include (e.g., "Birthday\|Anniversary")                                                    |
 
 This structure gives you granular control over how information from different calendars is displayed.
+
+> **Note:** Setting `show_location: false` hides locations only in event blocks. Event detail popups always display the full location when available.
 
 #### 🔍 Event Filtering
 
