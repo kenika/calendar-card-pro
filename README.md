@@ -585,7 +585,7 @@ Fine-tune the spacing and alignment of your calendar elements:
 ```yaml
 # Spacing between elements
 day_spacing: '8px' # Space between different calendar days
-event_spacing: '6px' # Internal padding within each event
+event_spacing: '6px' # Spacing around each event block
 
 # Date column alignment
 date_vertical_alignment: 'top' # Options: 'top', 'middle', 'bottom'
@@ -1176,7 +1176,7 @@ These examples demonstrate how Calendar Card Pro can be customized to match any 
 | `accent_color`                             | string            | `#03a9f4`                                          | Vertical line separator color                                                                                                                                                                                                                               |
 | `vertical_line_width`                      | string            | `2px`                                              | Vertical line separator width                                                                                                                                                                                                                               |
 | `day_spacing`                              | string            | `5px`                                              | Spacing between different calendar day rows (replaces row_spacing)                                                                                                                                                                                          |
-| `event_spacing`                            | string            | `4px`                                              | Vertical padding within each event                                                                                                                                                                                                                          |
+| `event_spacing`                            | string            | `4px`                                              | Spacing around each event block |
 | `additional_card_spacing`                  | string            | `0px`                                              | Additional top/bottom padding for the card                                                                                                                                                                                                                  |
 | `height`                                   | string            | `auto`                                             | Sets a fixed, exact height for the card regardless of content amount (always this height, never more or less)                                                                                                                                               |
 | `max_height`                               | string            | `none`                                             | Allows the card to grow with content up to this maximum height limit                                                                                                                                                                                        |
