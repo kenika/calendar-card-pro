@@ -14,6 +14,7 @@
 - Added a subtle 2% margin around event blocks for clearer separation.
 - Weekday headers can show daily weather aligned to the top-right (icon, high, low).
 - Event popup resized to 25% width/height with stacked weather details and scrollable description.
+- Event detail pop-up now shows calendar labels, description, and location with weather based on the next full hour and configurable styling.
 
 # Calendar Card Pro v3.1.0
 

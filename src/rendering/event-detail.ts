@@ -26,8 +26,25 @@ export function openEventDetail(
   const forecast = weather
     ? Weather.findForecastForEvent(event, weather.hourly, weather.daily)
     : undefined;
-  const eventWeatherStyle = `font-size:${config.weather?.event?.font_size || '12px'};color:${config.weather?.event?.color || 'var(--primary-text-color)'};`;
-  const eventIconSize = config.weather?.event?.icon_size || '14px';
+  const eventWeatherConfig = config.weather?.event || {};
+  const eventWeatherStyle = `font-size:${eventWeatherConfig.font_size || '12px'};color:${eventWeatherConfig.color || 'var(--primary-text-color)'};`;
+  const eventIconSize = eventWeatherConfig.icon_size || '14px';
+  const showTemp = eventWeatherConfig.show_temp !== false;
+  const showCondition = eventWeatherConfig.show_conditions === true;
+  const showHigh = eventWeatherConfig.show_high_temp === true;
+  const showLow = eventWeatherConfig.show_low_temp === true;
+  const labels =
+    event._entityLabels && event._entityLabels.length
+      ? event._entityLabels
+      : event._entityLabel
+        ? [event._entityLabel]
+        : [];
+  const colors =
+    event._entityColors && event._entityColors.length
+      ? event._entityColors
+      : event._matchedConfig?.color
+        ? [event._matchedConfig.color]
+        : [];
 
   render(
     html`<div class="ccp-event-detail-dialog" @click=${(e: Event) => e.stopPropagation()}>
@@ -37,13 +54,35 @@ export function openEventDetail(
                 style="width:${eventIconSize};height:${eventIconSize};"
                 .icon=${forecast.icon}
               ></ha-icon>
-              <span class="temp">${forecast.temperature}°</span>
+              ${showTemp && forecast.temperature !== undefined
+                ? html`<span class="temp">${forecast.temperature}°</span>`
+                : ''}
+              ${showHigh && forecast.temperature !== undefined
+                ? html`<span class="high">${forecast.temperature}°</span>`
+                : ''}
+              ${showLow && forecast.templow !== undefined
+                ? html`<span class="low">${forecast.templow}°</span>`
+                : ''}
+              ${showCondition ? html`<span class="cond">${forecast.condition}</span>` : ''}
               ${forecast.precipitation_probability !== undefined
                 ? html`<span class="rain">${forecast.precipitation_probability}%</span>`
                 : ''}
             </div>`
           : ''}
         <div class="detail-title">${event.summary}</div>
+        ${labels.length
+          ? html`<div class="detail-calendars">
+              ${labels.map(
+                (l, idx) =>
+                  html`<button
+                    class="ccp-filter-btn"
+                    style="color:${colors[idx] || 'var(--primary-text-color)'}"
+                  >
+                    ${l}
+                  </button>`,
+              )}
+            </div>`
+          : ''}
         <div class="detail-time">${time}</div>
         ${location ? html`<div class="detail-location">${location}</div>` : ''}
         ${event.description ? html`<div class="detail-description">${event.description}</div>` : ''}
@@ -82,12 +121,28 @@ export function openEventDetail(
         .detail-description {
           white-space: pre-wrap;
         }
-        .detail-weather {
+        .detail-calendars {
           display: flex;
           flex-direction: column;
-          align-items: center;
           gap: 4px;
           margin-bottom: 8px;
+        }
+        .ccp-filter-btn {
+          padding: 4px 8px;
+          border: 1px solid var(--line-color);
+          border-radius: 16px;
+          background: none;
+          font: inherit;
+          cursor: default;
+        }
+        .detail-weather {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 4px;
         }
         .detail-weather .rain {
           color: blue;

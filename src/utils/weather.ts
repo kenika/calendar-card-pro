@@ -156,46 +156,20 @@ export function findForecastForEvent(
     return undefined;
   }
 
-  // Get the event start time
+  // Get the event start time and select forecast for the next full hour
   const eventStart = new Date(event.start.dateTime);
-  const eventDate = FormatUtils.getLocalDateKey(eventStart);
-  const eventHour = eventStart.getHours();
+  let targetDate = FormatUtils.getLocalDateKey(eventStart);
+  let targetHour =
+    eventStart.getMinutes() === 0 ? eventStart.getHours() : eventStart.getHours() + 1;
 
-  // Try to find the exact hour
-  const exactMatch = hourlyForecasts[`${eventDate}_${eventHour}`];
-  if (exactMatch) {
-    return exactMatch;
+  if (targetHour >= 24) {
+    const nextDay = new Date(eventStart);
+    nextDay.setDate(nextDay.getDate() + 1);
+    targetDate = FormatUtils.getLocalDateKey(nextDay);
+    targetHour = 0;
   }
 
-  // Find the closest hour forecast
-  let closestHour = -1;
-  let minDiff = 24;
-
-  // Look through all hourly forecasts for this date
-  Object.keys(hourlyForecasts).forEach((key) => {
-    if (key.startsWith(eventDate)) {
-      // Extract hour from the key
-      const hourPart = key.split('_')[1];
-      const hour = parseInt(hourPart);
-
-      if (!isNaN(hour)) {
-        // Calculate difference, accounting for hour wrapping
-        const diff = Math.abs(hour - eventHour);
-
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestHour = hour;
-        }
-      }
-    }
-  });
-
-  // Return the closest forecast if found
-  if (closestHour >= 0) {
-    return hourlyForecasts[`${eventDate}_${closestHour}`];
-  }
-
-  return undefined;
+  return hourlyForecasts[`${targetDate}_${targetHour}`];
 }
 
 //-----------------------------------------------------------------------------
