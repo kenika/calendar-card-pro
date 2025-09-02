@@ -524,22 +524,26 @@ export function groupEventsByDay(
         // Use helper function to calculate week number with majority rule
         const weekNumber = calculateWeekNumberWithMajorityRule(currentDate, config, firstDayOfWeek);
 
-        // Create an empty day with a "fake" event
+        // Create an empty day optionally with a placeholder event
+        const emptyEvents = config.show_no_events_text
+          ? [
+              {
+                summary: translations.noEvents,
+                start: { date: dateKey },
+                end: { date: dateKey },
+                _entityId: '_empty_day_',
+                _isEmptyDay: true,
+                location: '',
+              },
+            ]
+          : [];
+
         const dayObj: Types.EventsByDay = {
           weekday: translations.daysOfWeek[currentDate.getDay()],
           day: currentDate.getDate(),
           month: translations.months[currentDate.getMonth()],
           timestamp: currentDate.getTime(),
-          events: [
-            {
-              summary: translations.noEvents,
-              start: { date: dateKey },
-              end: { date: dateKey },
-              _entityId: '_empty_day_',
-              _isEmptyDay: true,
-              location: '',
-            },
-          ],
+          events: emptyEvents,
           weekNumber,
           monthNumber: currentDate.getMonth(),
           isFirstDayOfMonth: currentDate.getDate() === 1,

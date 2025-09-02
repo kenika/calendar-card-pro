@@ -78,6 +78,15 @@ export const DEFAULT_CONFIG: Types.Config = {
   today_weekday_color: undefined, // Inherit from weekday_color or weekend_weekday_color
   today_day_color: undefined, // Inherit from day_color or weekend_day_color
   today_month_color: undefined, // Inherit from month_color or weekend_month_color,
+  weekend_background_color: undefined,
+  today_background_color: undefined,
+
+  show_hour_lines: false,
+  hour_line_color: 'var(--calendar-card-line-color-vertical)',
+  hour_line_thickness: '1px',
+  show_half_hour_lines: false,
+  half_hour_line_color: 'var(--calendar-card-line-color-vertical)',
+  half_hour_line_thickness: '1px',
 
   // Event column
   event_background_opacity: 0,
@@ -90,6 +99,7 @@ export const DEFAULT_CONFIG: Types.Config = {
   event_font_size: '14px',
   event_color: 'var(--primary-text-color)',
   empty_day_color: 'var(--primary-text-color)',
+  show_no_events_text: true,
   show_time: true,
   show_single_allday_time: true,
   time_24h: 'system',

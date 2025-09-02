@@ -76,6 +76,16 @@ export interface Config {
   today_weekday_color?: string;
   today_day_color?: string;
   today_month_color?: string;
+  weekend_background_color?: string;
+  today_background_color?: string;
+
+  // Grid lines
+  show_hour_lines: boolean;
+  hour_line_color: string;
+  hour_line_thickness: string;
+  show_half_hour_lines: boolean;
+  half_hour_line_color: string;
+  half_hour_line_thickness: string;
 
   // Event column
   event_background_opacity: number;
@@ -88,6 +98,7 @@ export interface Config {
   event_font_size: string;
   event_color: string;
   empty_day_color: string;
+  show_no_events_text: boolean;
   show_time: boolean;
   show_single_allday_time: boolean;
   time_24h: boolean | 'system';
