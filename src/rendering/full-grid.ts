@@ -9,6 +9,8 @@ import { TemplateResult, html } from 'lit';
 import * as Types from '../config/types';
 import { calculateGridPositions } from '../utils/events';
 
+const BUILD_TIMESTAMP = '__BUILD_TIMESTAMP__';
+
 /**
  * Render the full-grid calendar structure
  */
@@ -68,6 +70,7 @@ function renderCalendarHeader(
         ${entity.label || entity.entity}
       </button>`;
     })}
+    <span class="ccp-build-tag">Build: ${BUILD_TIMESTAMP}</span>
   </div>`;
 }
 

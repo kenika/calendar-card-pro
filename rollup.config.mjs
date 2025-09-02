@@ -14,6 +14,7 @@ const outputFilename = isProd ? 'calendar-card-pro.js' : 'calendar-card-pro-dev.
 // Get version from package.json reliably
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'));
 const version = packageJson.version;
+const buildTimestamp = new Date().toISOString();
 
 export default {
   input: 'src/calendar-card-pro.ts',
@@ -37,6 +38,7 @@ export default {
       'CURRENT_LOG_LEVEL: 3': `CURRENT_LOG_LEVEL: ${isProd ? 0 : 3}`,
       // Remove -dev suffix from component name in production
       'calendar-card-pro-dev': isProd ? 'calendar-card-pro' : 'calendar-card-pro-dev',
+      '__BUILD_TIMESTAMP__': buildTimestamp,
     }),
     json(),
     esbuild({
