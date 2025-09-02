@@ -205,6 +205,10 @@ export interface CalendarEventData {
   location?: string;
   _entityId?: string;
   _entityLabel?: string;
+  /** Labels from all calendars this event belongs to */
+  _entityLabels?: string[];
+  /** Colors for the corresponding entity labels */
+  _entityColors?: string[];
   _isEmptyDay?: boolean;
   _matchedConfig?: EntityConfig;
   time?: string;

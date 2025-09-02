@@ -237,7 +237,9 @@ export function groupEventsByDay(
         start: event.start,
         end: event.end,
         _entityId: event._entityId,
-        _entityLabel: getEntityLabel(event._entityId, config, event),
+        _entityLabel: event._entityLabel,
+        _entityLabels: event._entityLabels,
+        _entityColors: event._entityColors,
         _matchedConfig: event._matchedConfig,
         _isEmptyDay: event._isEmptyDay,
       });
@@ -595,8 +597,10 @@ function processEvents(
   config: Types.Config,
 ): Types.CalendarEventData[] {
   const processedEvents: Types.CalendarEventData[] = [];
-  // Set to track already handled events when filter_duplicates is true
-  const handledEventSignatures = config.filter_duplicates ? new Set<string>() : undefined;
+  // Track already handled events and collect their calendar labels/colors when filter_duplicates is true
+  const handledEvents = config.filter_duplicates
+    ? new Map<string, Types.CalendarEventData>()
+    : undefined;
 
   // For each entity config (even if same entity), process independently
   config.entities.forEach((entityConfig) => {
@@ -610,17 +614,34 @@ function processEvents(
 
     // Remove events already handled by previous configs (if filter_duplicates)
     matchedEvents = matchedEvents.filter((event) => {
-      if (!handledEventSignatures) return true;
+      if (!handledEvents) return true;
       const signature = generateEventSignature(event);
-      if (handledEventSignatures.has(signature)) return false;
-      handledEventSignatures.add(signature);
+      const existing = handledEvents.get(signature);
+      if (existing) {
+        const label = getEntityLabel(entityId, config, event);
+        const color = getEntityColor(entityId, config, event);
+        if (label) {
+          if (!existing._entityLabels) existing._entityLabels = [];
+          if (!existing._entityLabels.includes(label)) existing._entityLabels.push(label);
+        }
+        if (color) {
+          if (!existing._entityColors) existing._entityColors = [];
+          if (!existing._entityColors.includes(color)) existing._entityColors.push(color);
+        }
+        return false;
+      }
+      handledEvents.set(signature, event);
       return true;
     });
 
     // Assign matched config and label for rendering
     matchedEvents.forEach((event) => {
       event._matchedConfig = typeof entityConfig === 'object' ? entityConfig : undefined;
-      event._entityLabel = getEntityLabel(entityId, config, event);
+      const label = getEntityLabel(entityId, config, event);
+      const color = getEntityColor(entityId, config, event);
+      event._entityLabel = label;
+      event._entityLabels = label ? [label] : [];
+      event._entityColors = color ? [color] : [];
     });
 
     processedEvents.push(...matchedEvents);
