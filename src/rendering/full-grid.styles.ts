@@ -37,10 +37,9 @@ export const fullGridStyles = css`
 
   .ccp-weekday-header {
     display: grid;
-    grid-template-columns: repeat(var(--full-grid-days, 7), 1fr);
+    grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
     text-align: center;
     font-weight: bold;
-    padding-left: var(--time-axis-width);
   }
 
   .ccp-weekday-label {
@@ -49,8 +48,11 @@ export const fullGridStyles = css`
 
   .ccp-all-day-row {
     display: grid;
-    grid-template-columns: repeat(var(--full-grid-days, 7), 1fr);
-    padding-left: var(--time-axis-width);
+    grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
+  }
+
+  .ccp-time-axis-spacer {
+    border-right: 1px solid var(--line-color);
   }
 
   .ccp-all-day-cell {
