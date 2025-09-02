@@ -7,7 +7,9 @@
 
 import { TemplateResult, html } from 'lit';
 import * as Types from '../config/types';
-import { calculateGridPositions } from '../utils/events';
+import { calculateGridPositions, getEntitySetting } from '../utils/events';
+import * as FormatUtils from '../utils/format';
+import { openEventDetail } from './event-detail';
 
 const BUILD_TIMESTAMP = '__BUILD_TIMESTAMP__';
 
@@ -17,11 +19,11 @@ const BUILD_TIMESTAMP = '__BUILD_TIMESTAMP__';
 export function renderFullGrid(
   days: Types.EventsByDay[],
   config: Types.Config,
-  _language: string,
+  language: string,
   _weather: Types.WeatherForecasts,
   activeCalendars: string[],
   toggleCalendar: (entity: string) => void,
-  _hass: Types.Hass | null,
+  hass: Types.Hass | null,
 ): TemplateResult {
   const dayCount = days.length;
 
@@ -38,13 +40,13 @@ export function renderFullGrid(
     </div>
     <div class="ccp-all-day-row">
       <div class="ccp-time-axis-spacer"></div>
-      ${days.map((d) => renderAllDayCell(d, config))}
+      ${days.map((d) => renderAllDayCell(d, config, language, hass))}
     </div>
     <div class="ccp-main-grid">
       ${renderTimeAxis()}
       <div class="ccp-day-columns">
         ${days.map((d) => renderDayBackground(d, config))}
-        ${days.map((d, idx) => renderTimedEvents(d, idx, config))}
+        ${days.map((d, idx) => renderTimedEvents(d, idx, config, language, hass))}
       </div>
     </div>
   </div>`;
@@ -93,10 +95,10 @@ function renderDayBackground(day: Types.EventsByDay, config: Types.Config): Temp
 
   let columnStyle = '';
   if (isWeekend && config.weekend_day_color) {
-    columnStyle = `background-color:${config.weekend_day_color};`;
+    columnStyle = `background-color:${config.weekend_day_color};background-image:repeating-linear-gradient(to bottom, transparent, transparent calc(var(--hour-height) - 1px), var(--line-color) calc(var(--hour-height) - 1px), var(--line-color) var(--hour-height));`;
   }
   if (isToday && config.today_day_color) {
-    columnStyle = `background-color:${config.today_day_color};`;
+    columnStyle = `background-color:${config.today_day_color};background-image:repeating-linear-gradient(to bottom, transparent, transparent calc(var(--hour-height) - 1px), var(--line-color) calc(var(--hour-height) - 1px), var(--line-color) var(--hour-height));`;
   }
 
   return html`<div class="ccp-day-column" style=${columnStyle}></div>`;
@@ -109,16 +111,36 @@ function renderTimedEvents(
   day: Types.EventsByDay,
   col: number,
   config: Types.Config,
+  language: string,
+  hass: Types.Hass | null,
 ): TemplateResult[] {
   const timedPositions = calculateGridPositions(day.events.filter((e) => e.start.dateTime));
   return timedPositions.map((p) => {
-    const eventColor = p.event._matchedConfig?.color || config.event_color;
+    const ev = p.event;
+    const eventColor = ev._matchedConfig?.color || config.event_color;
+    const showTime =
+      getEntitySetting(ev._entityId, 'show_time', config, ev) ?? config.show_time;
+    const showLocation =
+      getEntitySetting(ev._entityId, 'show_location', config, ev) ??
+      config.show_location;
+    const eventTime = showTime
+      ? FormatUtils.formatEventTime(ev, config, language, hass)
+      : '';
+    const location =
+      ev.location && showLocation
+        ? FormatUtils.formatLocation(ev.location, config.remove_location_country)
+        : '';
     return html`<div
       class="ccp-event-block"
       style="--col:${col};--start:${p.startMinute / 60};--end:${p.endMinute /
       60};--lane:${p.lane};--lanes:${p.laneCount};background-color:${eventColor}"
+      @click=${() =>
+        config.tap_action?.action === 'more-info' &&
+        openEventDetail(ev, config, language, hass)}
     >
-      ${p.event.summary}
+      ${showTime ? html`<div class="time">${eventTime}</div>` : ''}
+      <div class="summary">${ev.summary}</div>
+      ${location ? html`<div class="location">${location}</div>` : ''}
     </div>`;
   });
 }
@@ -126,13 +148,48 @@ function renderTimedEvents(
 /**
  * Render a cell in the all-day events row
  */
-function renderAllDayCell(day: Types.EventsByDay, config: Types.Config): TemplateResult {
+function renderAllDayCell(
+  day: Types.EventsByDay,
+  config: Types.Config,
+  language: string,
+  hass: Types.Hass | null,
+): TemplateResult {
   const allDayEvents = day.events.filter((e) => !e.start.dateTime && !e._isEmptyDay);
   return html`<div class="ccp-all-day-cell">
     ${allDayEvents.map((ev) => {
       const eventColor = ev._matchedConfig?.color || config.event_color;
-      return html`<div class="ccp-event-block" style="background-color:${eventColor}">
-        ${ev.summary}
+      const showTime =
+        getEntitySetting(ev._entityId, 'show_time', config, ev) ?? config.show_time;
+      const showLocation =
+        getEntitySetting(ev._entityId, 'show_location', config, ev) ??
+        config.show_location;
+
+      // Determine if this is a multi-day all-day event
+      const startDate = FormatUtils.parseAllDayDate(ev.start.date || '');
+      const endDate = FormatUtils.parseAllDayDate(ev.end.date || '');
+      const adjustedEnd = new Date(endDate);
+      adjustedEnd.setDate(adjustedEnd.getDate() - 1);
+      const isMultiDay = startDate.toDateString() !== adjustedEnd.toDateString();
+
+      const shouldShowTime = showTime && (isMultiDay || config.show_single_allday_time);
+      const eventTime = shouldShowTime
+        ? FormatUtils.formatEventTime(ev, config, language, hass)
+        : '';
+      const location =
+        ev.location && showLocation
+          ? FormatUtils.formatLocation(ev.location, config.remove_location_country)
+          : '';
+
+      return html`<div
+        class="ccp-event-block"
+        style="background-color:${eventColor}"
+        @click=${() =>
+          config.tap_action?.action === 'more-info' &&
+          openEventDetail(ev, config, language, hass)}
+      >
+        ${shouldShowTime ? html`<div class="time">${eventTime}</div>` : ''}
+        <div class="summary">${ev.summary}</div>
+        ${location ? html`<div class="location">${location}</div>` : ''}
       </div>`;
     })}
   </div>`;
