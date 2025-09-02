@@ -122,18 +122,23 @@ export function openEventDetail(
           white-space: pre-wrap;
         }
         .detail-calendars {
+          position: absolute;
+          bottom: 8px;
+          right: 8px;
           display: flex;
           flex-direction: column;
+          align-items: flex-end;
           gap: 4px;
-          margin-bottom: 8px;
         }
         .ccp-filter-btn {
           padding: 4px 8px;
           border: 1px solid var(--line-color);
           border-radius: 16px;
           background: none;
+          cursor: pointer;
           font: inherit;
-          cursor: default;
+          width: 20%;
+          text-align: center;
         }
         .detail-weather {
           position: absolute;
