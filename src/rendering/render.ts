@@ -18,6 +18,7 @@ import * as FormatUtils from '../utils/format';
 import * as EventUtils from '../utils/events';
 import * as Helpers from '../utils/helpers';
 import * as Weather from '../utils/weather';
+import { openEventDetail } from './event-detail';
 
 //-----------------------------------------------------------------------------
 // MAIN CARD STRUCTURE RENDERING
@@ -904,6 +905,9 @@ export function renderEvent(
       <td
         class=${classMap(eventClasses)}
         style="border-left: var(--calendar-card-line-width-vertical) solid ${entityAccentColor}; background-color: ${entityAccentBackgroundColor};"
+        @click=${() =>
+          config.tap_action?.action === 'more-info' &&
+          openEventDetail(event, config, language, hass)}
       >
         <div class="event-content">
           ${renderEventTitle(event, config, weatherForecasts)}

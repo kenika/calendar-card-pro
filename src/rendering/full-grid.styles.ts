@@ -127,5 +127,16 @@ export const fullGridStyles = css`
     box-sizing: border-box;
     overflow: hidden;
     font-size: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ccp-event-block .time {
+    font-weight: bold;
+  }
+
+  .ccp-event-block .location {
+    font-size: 10px;
+    opacity: 0.8;
   }
 `;
