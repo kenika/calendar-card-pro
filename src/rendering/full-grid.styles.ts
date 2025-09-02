@@ -53,6 +53,30 @@ export const fullGridStyles = css`
     padding: 4px 0;
   }
 
+  .ccp-weekday-cell {
+    position: relative;
+  }
+
+  .ccp-weekday-weather {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ccp-weekday-weather ha-icon {
+    margin-right: 2px;
+  }
+
+  .ccp-weekday-weather .weather-temp-high {
+    margin-right: 2px;
+  }
+
+  .ccp-weekday-weather .weather-temp-low {
+    color: blue;
+  }
+
   .ccp-all-day-row {
     display: grid;
     grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
