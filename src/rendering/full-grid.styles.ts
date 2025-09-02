@@ -57,7 +57,6 @@ export const fullGridStyles = css`
     display: grid;
     grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
     min-height: 24px;
-
   }
 
   .ccp-time-axis-spacer {
@@ -115,11 +114,12 @@ export const fullGridStyles = css`
     --lanes: 1;
     left: calc(
       (100% / var(--full-grid-days, 7)) * var(--col) + (100% / var(--full-grid-days, 7)) *
-        (var(--lane, 0) / var(--lanes))
+        (var(--lane, 0) / var(--lanes)) + (100% / var(--full-grid-days, 7)) * (1 / var(--lanes)) *
+        0.01
     );
-    width: calc((100% / var(--full-grid-days, 7)) * (1 / var(--lanes)));
-    top: calc(var(--start) * var(--hour-height));
-    height: calc((var(--end) - var(--start)) * var(--hour-height));
+    width: calc((100% / var(--full-grid-days, 7)) * (1 / var(--lanes)) * 0.98);
+    top: calc(var(--start) * var(--hour-height) + var(--hour-height) * 0.01);
+    height: calc((var(--end) - var(--start)) * var(--hour-height) * 0.98);
     background-color: var(--line-color);
     color: var(--primary-text-color);
     border-radius: 4px;

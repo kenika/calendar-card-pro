@@ -10,6 +10,8 @@
   tint entire day columns.
 - Refactored full-grid markup to include a separate all-day row and scrollable timed grid with the time axis starting below all-day events.
 - Added sizing CSS variables (`--time-axis-width`, `--hour-height`) and event positioning vars (`--col`, `--start`, `--end`, `--lane`, `--lanes`) for lane-aware widths.
+- Improved lane calculation so only overlapping events share lanes while independent events occupy full width.
+- Added a subtle 2% margin around event blocks for clearer separation.
 
 # Calendar Card Pro v3.1.0
 
