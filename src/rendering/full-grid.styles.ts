@@ -18,6 +18,7 @@ export const fullGridStyles = css`
     gap: 4px;
     margin-bottom: 8px;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .ccp-filter-btn {
@@ -27,13 +28,12 @@ export const fullGridStyles = css`
     background: none;
     cursor: pointer;
     font: inherit;
-    opacity: 0.4;
+    width: 20%;
+    text-align: center;
   }
 
   .ccp-filter-btn.is-active {
-    background-color: var(--line-color);
     color: var(--primary-text-color);
-    opacity: 1;
   }
 
   .ccp-build-tag {
@@ -62,15 +62,17 @@ export const fullGridStyles = css`
     top: 2px;
     right: 4px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .ccp-weekday-weather ha-icon {
-    margin-right: 2px;
+    margin-right: 0;
   }
 
-  .ccp-weekday-weather .weather-temp-high {
-    margin-right: 2px;
+  .ccp-weekday-weather .temps {
+    display: flex;
+    gap: 2px;
   }
 
   .ccp-weekday-weather .weather-temp-low {
@@ -90,6 +92,20 @@ export const fullGridStyles = css`
   .ccp-all-day-cell {
     height: 100%;
     border-bottom: 1px solid var(--line-color);
+    display: flex;
+    flex-direction: column;
+    gap: var(--calendar-card-event-spacing);
+    padding: var(--calendar-card-event-spacing);
+  }
+
+  .ccp-all-day-cell .ccp-event-block {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: calc(100% - var(--calendar-card-event-spacing) * 2);
+    height: calc(var(--calendar-card-font-size-event) + var(--calendar-card-event-spacing) * 2);
+    margin: 0;
+    font-size: var(--calendar-card-font-size-event);
   }
 
   .ccp-main-grid {
@@ -138,19 +154,23 @@ export const fullGridStyles = css`
     --lanes: 1;
     left: calc(
       (100% / var(--full-grid-days, 7)) * var(--col) + (100% / var(--full-grid-days, 7)) *
-        (var(--lane, 0) / var(--lanes)) + (100% / var(--full-grid-days, 7)) * (1 / var(--lanes)) *
-        0.01
+        (var(--lane, 0) / var(--lanes)) + var(--calendar-card-event-spacing)
     );
-    width: calc((100% / var(--full-grid-days, 7)) * (1 / var(--lanes)) * 0.98);
-    top: calc(var(--start) * var(--hour-height) + var(--hour-height) * 0.01);
-    height: calc((var(--end) - var(--start)) * var(--hour-height) * 0.98);
+    width: calc(
+      (100% / var(--full-grid-days, 7)) * (1 / var(--lanes)) - var(--calendar-card-event-spacing) *
+        2
+    );
+    top: calc(var(--start) * var(--hour-height) + var(--calendar-card-event-spacing));
+    height: calc(
+      (var(--end) - var(--start)) * var(--hour-height) - var(--calendar-card-event-spacing) * 2
+    );
     background-color: var(--line-color);
     color: var(--primary-text-color);
     border-radius: 4px;
     padding: 2px;
     box-sizing: border-box;
     overflow: hidden;
-    font-size: 12px;
+    font-size: var(--calendar-card-font-size-event);
     display: flex;
     flex-direction: column;
   }

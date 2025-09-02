@@ -58,13 +58,20 @@ export function renderFullGrid(
                       .icon=${dailyForecast.icon}
                     ></ha-icon>`
                   : ''}
-                ${config.weather?.date?.show_high_temp !== false
-                  ? html`<span class="weather-temp-high">${dailyForecast.temperature}°</span>`
-                  : ''}
-                ${config.weather?.date?.show_low_temp !== false &&
-                dailyForecast.templow !== undefined
-                  ? html`<span class="weather-temp-low">${dailyForecast.templow}°</span>`
-                  : ''}
+                <div class="temps">
+                  ${config.weather?.date?.show_low_temp !== false &&
+                  dailyForecast.templow !== undefined
+                    ? html`<span class="weather-temp-low">${dailyForecast.templow}°</span>`
+                    : ''}
+                  ${config.weather?.date?.show_low_temp !== false &&
+                  config.weather?.date?.show_high_temp !== false &&
+                  dailyForecast.templow !== undefined
+                    ? html`<span>/</span>`
+                    : ''}
+                  ${config.weather?.date?.show_high_temp !== false
+                    ? html`<span class="weather-temp-high">${dailyForecast.temperature}°</span>`
+                    : ''}
+                </div>
               </div>`
             : ''}
         </div>`;
@@ -96,9 +103,11 @@ function renderCalendarHeader(
     ${config.entities.map((e) => {
       const entity = typeof e === 'string' ? { entity: e, color: 'var(--primary-text-color)' } : e;
       const isActive = activeCalendars.includes(entity.entity);
+      const bg = isActive ? entity.color : `color-mix(in srgb, ${entity.color} 20%, transparent)`;
+      const textColor = isActive ? 'var(--primary-text-color)' : entity.color;
       return html`<button
         class="ccp-filter-btn ${isActive ? 'is-active' : ''}"
-        style="color:${entity.color}"
+        style="background-color:${bg};color:${textColor}"
         @click=${() => toggleCalendar(entity.entity)}
       >
         ${entity.label || entity.entity}
@@ -184,7 +193,7 @@ function renderAllDayCell(
   weather: Types.WeatherForecasts,
   hass: Types.Hass | null,
 ): TemplateResult {
-  const allDayEvents = day.events.filter((e) => !e.start.dateTime && !e._isEmptyDay);
+  const allDayEvents = day.events.filter((e) => !e.start.dateTime && !e._isEmptyDay).slice(0, 3);
   return html`<div class="ccp-all-day-cell">
     ${allDayEvents.map((ev) => {
       const eventColor = ev._matchedConfig?.color || config.event_color;
