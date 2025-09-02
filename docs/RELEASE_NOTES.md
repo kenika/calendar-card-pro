@@ -12,6 +12,8 @@
 - Added sizing CSS variables (`--time-axis-width`, `--hour-height`) and event positioning vars (`--col`, `--start`, `--end`, `--lane`, `--lanes`) for lane-aware widths.
 - Improved lane calculation so only overlapping events share lanes while independent events occupy full width.
 - Added a subtle 2% margin around event blocks for clearer separation.
+- Weekday headers can show daily weather aligned to the top-right (icon, high, low).
+- Event popup resized to 25% width/height with stacked weather details and scrollable description.
 
 # Calendar Card Pro v3.1.0
 

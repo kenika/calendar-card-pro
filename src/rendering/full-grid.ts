@@ -9,6 +9,7 @@ import { TemplateResult, html } from 'lit';
 import * as Types from '../config/types';
 import { calculateGridPositions, getEntitySetting } from '../utils/events';
 import * as FormatUtils from '../utils/format';
+import * as Weather from '../utils/weather';
 import { openEventDetail } from './event-detail';
 
 const BUILD_TIMESTAMP = '__BUILD_TIMESTAMP__';
@@ -31,12 +32,43 @@ export function renderFullGrid(
     ${renderCalendarHeader(config, activeCalendars, toggleCalendar)}
     <div class="ccp-weekday-header">
       <div class="ccp-time-axis-spacer"></div>
-      ${days.map(
-        (d) =>
-          html`<div class="ccp-weekday-label">
+      ${days.map((d) => {
+        const date = new Date(d.timestamp);
+        const showDateWeather =
+          config.weather?.entity &&
+          (config.weather.position === 'date' || config.weather.position === 'both');
+        const dailyForecast =
+          showDateWeather && weather?.daily
+            ? Weather.findDailyForecast(date, weather.daily)
+            : undefined;
+        return html`<div class="ccp-weekday-cell">
+          <div class="ccp-weekday-label">
             ${d.weekday} ${d.day}${config.show_month ? ` ${d.month}` : ''}
-          </div>`,
-      )}
+          </div>
+          ${dailyForecast
+            ? html`<div
+                class="ccp-weekday-weather"
+                style="font-size:${config.weather?.date?.font_size || '12px'};color:${config.weather
+                  ?.date?.color || 'var(--primary-text-color)'};"
+              >
+                ${config.weather?.date?.show_conditions !== false
+                  ? html`<ha-icon
+                      style="width:${config.weather?.date?.icon_size || '14px'};height:${config
+                        .weather?.date?.icon_size || '14px'};"
+                      .icon=${dailyForecast.icon}
+                    ></ha-icon>`
+                  : ''}
+                ${config.weather?.date?.show_high_temp !== false
+                  ? html`<span class="weather-temp-high">${dailyForecast.temperature}°</span>`
+                  : ''}
+                ${config.weather?.date?.show_low_temp !== false &&
+                dailyForecast.templow !== undefined
+                  ? html`<span class="weather-temp-low">${dailyForecast.templow}°</span>`
+                  : ''}
+              </div>`
+            : ''}
+        </div>`;
+      })}
     </div>
     <div class="ccp-all-day-row">
       <div class="ccp-time-axis-spacer"></div>

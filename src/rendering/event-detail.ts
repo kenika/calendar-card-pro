@@ -26,12 +26,17 @@ export function openEventDetail(
   const forecast = weather
     ? Weather.findForecastForEvent(event, weather.hourly, weather.daily)
     : undefined;
+  const eventWeatherStyle = `font-size:${config.weather?.event?.font_size || '12px'};color:${config.weather?.event?.color || 'var(--primary-text-color)'};`;
+  const eventIconSize = config.weather?.event?.icon_size || '14px';
 
   render(
     html`<div class="ccp-event-detail-dialog" @click=${(e: Event) => e.stopPropagation()}>
         ${forecast
-          ? html`<div class="detail-weather">
-              <ha-icon .icon=${forecast.icon}></ha-icon>
+          ? html`<div class="detail-weather" style=${eventWeatherStyle}>
+              <ha-icon
+                style="width:${eventIconSize};height:${eventIconSize};"
+                .icon=${forecast.icon}
+              ></ha-icon>
               <span class="temp">${forecast.temperature}°</span>
               ${forecast.precipitation_probability !== undefined
                 ? html`<span class="rain">${forecast.precipitation_probability}%</span>`
@@ -41,10 +46,7 @@ export function openEventDetail(
         <div class="detail-title">${event.summary}</div>
         <div class="detail-time">${time}</div>
         ${location ? html`<div class="detail-location">${location}</div>` : ''}
-        ${event.description
-          ? html`<div class="detail-description">${event.description}</div>
-              <button class="detail-expand">Expand</button>`
-          : ''}
+        ${event.description ? html`<div class="detail-description">${event.description}</div>` : ''}
       </div>
       <style>
         .ccp-event-detail-overlay {
@@ -62,8 +64,8 @@ export function openEventDetail(
           color: var(--primary-text-color);
           padding: 16px;
           border-radius: 8px;
-          width: 50%;
-          height: 50%;
+          width: 25%;
+          height: 25%;
           overflow: auto;
           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
@@ -78,31 +80,14 @@ export function openEventDetail(
           margin-top: 8px;
         }
         .detail-description {
-          display: -webkit-box;
-          -webkit-line-clamp: 20;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .detail-description.expanded {
-          display: block;
-          -webkit-line-clamp: unset;
-        }
-        .detail-expand {
-          margin-top: 8px;
-          background: none;
-          border: none;
-          color: var(--primary-color);
-          cursor: pointer;
-          padding: 0;
-          font: inherit;
+          white-space: pre-wrap;
         }
         .detail-weather {
-          position: absolute;
-          top: 8px;
-          right: 8px;
           display: flex;
+          flex-direction: column;
           align-items: center;
           gap: 4px;
+          margin-bottom: 8px;
         }
         .detail-weather .rain {
           color: blue;
@@ -112,15 +97,4 @@ export function openEventDetail(
   );
 
   document.body.appendChild(overlay);
-
-  const description = overlay.querySelector('.detail-description') as HTMLElement | null;
-  const expandBtn = overlay.querySelector('.detail-expand') as HTMLButtonElement | null;
-
-  if (description && expandBtn) {
-    expandBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      description.classList.toggle('expanded');
-      expandBtn.textContent = description.classList.contains('expanded') ? 'Collapse' : 'Expand';
-    });
-  }
 }
