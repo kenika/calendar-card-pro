@@ -9,6 +9,8 @@ import { TemplateResult, html } from 'lit';
 import * as Types from '../config/types';
 import { calculateGridPositions } from '../utils/events';
 
+const BUILD_TIMESTAMP = '__BUILD_TIMESTAMP__';
+
 /**
  * Render the full-grid calendar structure
  */
@@ -26,6 +28,7 @@ export function renderFullGrid(
   return html`<div class="ccp-full-grid" style="--full-grid-days:${dayCount}">
     ${renderCalendarHeader(config, activeCalendars, toggleCalendar)}
     <div class="ccp-weekday-header">
+      <div class="ccp-time-axis-spacer"></div>
       ${days.map(
         (d) =>
           html`<div class="ccp-weekday-label">
@@ -33,7 +36,10 @@ export function renderFullGrid(
           </div>`,
       )}
     </div>
-    <div class="ccp-all-day-row">${days.map((d) => renderAllDayCell(d, config))}</div>
+    <div class="ccp-all-day-row">
+      <div class="ccp-time-axis-spacer"></div>
+      ${days.map((d) => renderAllDayCell(d, config))}
+    </div>
     <div class="ccp-main-grid">
       ${renderTimeAxis()}
       <div class="ccp-day-columns">
@@ -64,6 +70,7 @@ function renderCalendarHeader(
         ${entity.label || entity.entity}
       </button>`;
     })}
+    <span class="ccp-build-tag">Build: ${BUILD_TIMESTAMP}</span>
   </div>`;
 }
 

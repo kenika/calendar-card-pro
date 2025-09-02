@@ -17,6 +17,7 @@ export const fullGridStyles = css`
     display: flex;
     gap: 4px;
     margin-bottom: 8px;
+    align-items: center;
   }
 
   .ccp-filter-btn {
@@ -35,12 +36,17 @@ export const fullGridStyles = css`
     opacity: 1;
   }
 
+  .ccp-build-tag {
+    margin-left: auto;
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+
   .ccp-weekday-header {
     display: grid;
-    grid-template-columns: repeat(var(--full-grid-days, 7), 1fr);
+    grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
     text-align: center;
     font-weight: bold;
-    padding-left: var(--time-axis-width);
   }
 
   .ccp-weekday-label {
@@ -49,12 +55,16 @@ export const fullGridStyles = css`
 
   .ccp-all-day-row {
     display: grid;
-    grid-template-columns: repeat(var(--full-grid-days, 7), 1fr);
-    padding-left: var(--time-axis-width);
+    grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
+    min-height: 24px;
+  }
+
+  .ccp-time-axis-spacer {
+    border-right: 1px solid var(--line-color);
   }
 
   .ccp-all-day-cell {
-    min-height: 24px;
+    height: 100%;
     border-bottom: 1px solid var(--line-color);
   }
 
