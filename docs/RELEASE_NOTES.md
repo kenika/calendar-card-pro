@@ -16,6 +16,9 @@
 - Event popup resized to 25% width/height with stacked weather details and scrollable description.
 - Event detail pop-up now shows calendar labels, description, and location with weather based on the next full hour and configurable styling.
 
+## Fixed
+- Event detail pop-up now correctly displays location and description data even when `show_location` hides locations in event blocks.
+
 # Calendar Card Pro v3.1.0
 
 **Enhanced internationalization and improved customization.** This release significantly expands language support for the visual configuration editor while adding powerful new customization options and fixing important display issues.

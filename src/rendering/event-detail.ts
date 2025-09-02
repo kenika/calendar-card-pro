@@ -20,8 +20,8 @@ export function openEventDetail(
   overlay.addEventListener('click', () => overlay.remove());
 
   const time = FormatUtils.formatEventTime(event, config, language, hass);
-  const location = event.location
-    ? FormatUtils.formatLocation(event.location, config.remove_location_country)
+  const location = event.rawLocation
+    ? FormatUtils.formatLocation(event.rawLocation, config.remove_location_country)
     : '';
   const forecast = weather
     ? Weather.findForecastForEvent(event, weather.hourly, weather.daily)
