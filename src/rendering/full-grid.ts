@@ -20,7 +20,7 @@ export function renderFullGrid(
   days: Types.EventsByDay[],
   config: Types.Config,
   language: string,
-  _weather: Types.WeatherForecasts,
+  weather: Types.WeatherForecasts,
   activeCalendars: string[],
   toggleCalendar: (entity: string) => void,
   hass: Types.Hass | null,
@@ -40,13 +40,13 @@ export function renderFullGrid(
     </div>
     <div class="ccp-all-day-row">
       <div class="ccp-time-axis-spacer"></div>
-      ${days.map((d) => renderAllDayCell(d, config, language, hass))}
+      ${days.map((d) => renderAllDayCell(d, config, language, weather, hass))}
     </div>
     <div class="ccp-main-grid">
       ${renderTimeAxis()}
       <div class="ccp-day-columns">
         ${days.map((d) => renderDayBackground(d, config))}
-        ${days.map((d, idx) => renderTimedEvents(d, idx, config, language, hass))}
+        ${days.map((d, idx) => renderTimedEvents(d, idx, config, language, weather, hass))}
       </div>
     </div>
   </div>`;
@@ -112,20 +112,17 @@ function renderTimedEvents(
   col: number,
   config: Types.Config,
   language: string,
+  weather: Types.WeatherForecasts,
   hass: Types.Hass | null,
 ): TemplateResult[] {
   const timedPositions = calculateGridPositions(day.events.filter((e) => e.start.dateTime));
   return timedPositions.map((p) => {
     const ev = p.event;
     const eventColor = ev._matchedConfig?.color || config.event_color;
-    const showTime =
-      getEntitySetting(ev._entityId, 'show_time', config, ev) ?? config.show_time;
+    const showTime = getEntitySetting(ev._entityId, 'show_time', config, ev) ?? config.show_time;
     const showLocation =
-      getEntitySetting(ev._entityId, 'show_location', config, ev) ??
-      config.show_location;
-    const eventTime = showTime
-      ? FormatUtils.formatEventTime(ev, config, language, hass)
-      : '';
+      getEntitySetting(ev._entityId, 'show_location', config, ev) ?? config.show_location;
+    const eventTime = showTime ? FormatUtils.formatEventTime(ev, config, language, hass) : '';
     const location =
       ev.location && showLocation
         ? FormatUtils.formatLocation(ev.location, config.remove_location_country)
@@ -135,8 +132,8 @@ function renderTimedEvents(
       style="--col:${col};--start:${p.startMinute / 60};--end:${p.endMinute /
       60};--lane:${p.lane};--lanes:${p.laneCount};background-color:${eventColor}"
       @click=${() =>
-        config.tap_action?.action === 'more-info' &&
-        openEventDetail(ev, config, language, hass)}
+        config.tap_action?.action === 'expand' &&
+        openEventDetail(ev, config, language, weather, hass)}
     >
       ${showTime ? html`<div class="time">${eventTime}</div>` : ''}
       <div class="summary">${ev.summary}</div>
@@ -152,17 +149,16 @@ function renderAllDayCell(
   day: Types.EventsByDay,
   config: Types.Config,
   language: string,
+  weather: Types.WeatherForecasts,
   hass: Types.Hass | null,
 ): TemplateResult {
   const allDayEvents = day.events.filter((e) => !e.start.dateTime && !e._isEmptyDay);
   return html`<div class="ccp-all-day-cell">
     ${allDayEvents.map((ev) => {
       const eventColor = ev._matchedConfig?.color || config.event_color;
-      const showTime =
-        getEntitySetting(ev._entityId, 'show_time', config, ev) ?? config.show_time;
+      const showTime = getEntitySetting(ev._entityId, 'show_time', config, ev) ?? config.show_time;
       const showLocation =
-        getEntitySetting(ev._entityId, 'show_location', config, ev) ??
-        config.show_location;
+        getEntitySetting(ev._entityId, 'show_location', config, ev) ?? config.show_location;
 
       // Determine if this is a multi-day all-day event
       const startDate = FormatUtils.parseAllDayDate(ev.start.date || '');
@@ -184,8 +180,8 @@ function renderAllDayCell(
         class="ccp-event-block"
         style="background-color:${eventColor}"
         @click=${() =>
-          config.tap_action?.action === 'more-info' &&
-          openEventDetail(ev, config, language, hass)}
+          config.tap_action?.action === 'expand' &&
+          openEventDetail(ev, config, language, weather, hass)}
       >
         ${shouldShowTime ? html`<div class="time">${eventTime}</div>` : ''}
         <div class="summary">${ev.summary}</div>

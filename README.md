@@ -269,7 +269,7 @@ Each calendar gets a filter button in the header so you can toggle its events on
 - Weekday headers include the month when `show_month` is set.
 - Weekend and today columns can be tinted with `weekend_day_color` and `today_day_color`.
 - Event blocks respect `show_time`, `show_single_allday_time`, `show_end_time`, and `show_location` configuration.
-- Tapping an event with `tap_action: more-info` opens a popup with its time, title, location, and description.
+- Tapping an event with `tap_action: expand` opens a centered popup showing title, time, location, weather, and an expandable description.
 - Hourly grid lines span the time axis and day columns to provide temporal context.
 
 ### Core Settings
