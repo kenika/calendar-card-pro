@@ -57,6 +57,7 @@ export const fullGridStyles = css`
     display: grid;
     grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
     min-height: 24px;
+
   }
 
   .ccp-time-axis-spacer {
