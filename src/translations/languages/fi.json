@@ -2,7 +2,15 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"],
+  "daysOfWeek": [
+    "Su",
+    "Ma",
+    "Ti",
+    "Ke",
+    "To",
+    "Pe",
+    "La"
+  ],
   "fullDaysOfWeek": [
     "Sunnuntai",
     "Maanantai",
@@ -33,5 +41,8 @@
   "endsTomorrow": "päättyy huomenna",
   "noEvents": "Ei tulevia tapahtumia",
   "loading": "Ladataan kalenteritapahtumia...",
-  "error": "Virhe: Kalenteriyksikköä ei löydy tai se on väärin määritetty"
+  "error": "Virhe: Kalenteriyksikköä ei löydy tai se on väärin määritetty",
+  "editor": {
+    "hour_height": "Hour height"
+  }
 }

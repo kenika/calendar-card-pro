@@ -2,7 +2,15 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
+  "daysOfWeek": [
+    "Zo",
+    "Ma",
+    "Di",
+    "Wo",
+    "Do",
+    "Vr",
+    "Za"
+  ],
   "fullDaysOfWeek": [
     "zondag",
     "maandag",
@@ -12,7 +20,20 @@
     "vrijdag",
     "zaterdag"
   ],
-  "months": ["Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mrt",
+    "Apr",
+    "Mei",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dec"
+  ],
   "allDay": "hele dag",
   "multiDay": "tot",
   "at": "om",
@@ -20,5 +41,8 @@
   "endsTomorrow": "eindigt morgen",
   "noEvents": "Geen afspraken gepland",
   "loading": "Kalender afspraken laden...",
-  "error": "Fout: Kalender niet gevonden of verkeerd geconfigureerd"
+  "error": "Fout: Kalender niet gevonden of verkeerd geconfigureerd",
+  "editor": {
+    "hour_height": "Hour height"
+  }
 }

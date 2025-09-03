@@ -2,7 +2,15 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["Dg", "Dl", "Dm", "Dc", "Dj", "Dv", "Ds"],
+  "daysOfWeek": [
+    "Dg",
+    "Dl",
+    "Dm",
+    "Dc",
+    "Dj",
+    "Dv",
+    "Ds"
+  ],
   "fullDaysOfWeek": [
     "Diumenge",
     "Dilluns",
@@ -12,7 +20,20 @@
     "Divendres",
     "Dissabte"
   ],
-  "months": ["Gen", "Febr", "Març", "Abr", "Maig", "Juny", "Jul", "Ag", "Set", "Oct", "Nov", "Des"],
+  "months": [
+    "Gen",
+    "Febr",
+    "Març",
+    "Abr",
+    "Maig",
+    "Juny",
+    "Jul",
+    "Ag",
+    "Set",
+    "Oct",
+    "Nov",
+    "Des"
+  ],
   "allDay": "tot el dia",
   "multiDay": "fins a",
   "at": "a les",
@@ -20,5 +41,8 @@
   "endsTomorrow": "acaba damà",
   "noEvents": "Cap event proper",
   "loading": "Carregant events...",
-  "error": "Error: No s'ha trobat l'entitat del calendari o aquesta està mal configurada"
+  "error": "Error: No s'ha trobat l'entitat del calendari o aquesta està mal configurada",
+  "editor": {
+    "hour_height": "Hour height"
+  }
 }

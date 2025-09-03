@@ -38,6 +38,7 @@ export interface Config {
   day_spacing: string;
   event_spacing: string;
   additional_card_spacing: string;
+  hour_height: string;
   max_height: string;
   height: string;
 

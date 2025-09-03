@@ -1,5 +1,13 @@
 {
-  "daysOfWeek": ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+  "daysOfWeek": [
+    "So",
+    "Mo",
+    "Di",
+    "Mi",
+    "Do",
+    "Fr",
+    "Sa"
+  ],
   "fullDaysOfWeek": [
     "Sonntag",
     "Montag",
@@ -9,7 +17,20 @@
     "Freitag",
     "Samstag"
   ],
-  "months": ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mär",
+    "Apr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dez"
+  ],
   "allDay": "ganztägig",
   "multiDay": "bis",
   "at": "um",
@@ -21,7 +42,6 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-
   "editor": {
     "calendar_entities": "Kalender Entitäten",
     "calendar": "Kalender",
@@ -62,7 +82,6 @@
     "entity_show_location_note": "Veranstaltungsorte nur für diesen Kalender anzeigen oder ausblenden.",
     "split_multiday_events": "Mehrtägige Ereignisse aufteilen",
     "entity_split_multiday_note": "Für diesen Kalender mehrtägige Ereignisse in einzelne Tagessegmente aufteilen.",
-
     "core_settings": "Haupteinstellungen",
     "time_range": "Zeitbereich",
     "time_range_note": "Dieser Zeitbereich definiert den regulären Anzeigemodus, der zur erweiterten Ansicht wird, wenn der Kompaktmodus konfiguriert ist.",
@@ -95,7 +114,6 @@
     "custom": "Benutzerdefiniert",
     "12h": "12-Stunden",
     "24h": "24-Stunden",
-
     "appearance_layout": "Aussehen & Layout",
     "title_styling": "Titelgestaltung",
     "title": "Titel",
@@ -117,7 +135,6 @@
     "day_spacing": "Abstand Tag",
     "event_spacing": "Abstand Ereignis",
     "additional_card_spacing": "Zusätzlicher Kartenabstand",
-
     "date_display": "Datumsanzeige",
     "vertical_alignment": "Vertikale Ausrichtung",
     "date_vertical_alignment": "Vertikale Datumsausrichtung",
@@ -179,7 +196,6 @@
     "show_month_separator": "Monatstrenner anzeigen",
     "month_separator_width": "Monatstrenner Breite",
     "month_separator_color": "Monatstrenner Farbe",
-
     "event_display": "Ereignisanzeige",
     "event_title": "Ereignisname",
     "event_font_size": "Ereignis Schriftgröße",
@@ -204,7 +220,6 @@
     "progress_bar_height": "Fortschrittsbalken Höhe",
     "progress_bar_width": "Fortschrittsbalken Breite",
     "multiday_event_handling": "Mehrtägige Ereignisbehandlung",
-
     "weather_integration": "Wetterintegration",
     "weather_entity_position": "Wetter-Entität & Position",
     "weather_entity": "Wetter-Entität",
@@ -221,7 +236,6 @@
     "color": "Farbe",
     "event_row_weather": "Ereignisreihe Wetter",
     "show_temp": "Temperatur anzeigen",
-
     "interactions": "Interaktionen",
     "tap_action": "Aktion antippen",
     "hold_action": "Aktion halten",
@@ -237,10 +251,10 @@
     "refresh_settings": "Einstellungen aktualisieren",
     "refresh_interval": "Aktualisierungsintervall (Minuten)",
     "refresh_on_navigate": "Aktualisieren beim Zurücknavigieren",
-
     "deprecated_config_detected": "Veraltete Konfigurationsoptionen erkannt.",
     "deprecated_config_explanation": "Einige Optionen in dieser Konfiguration werden nicht mehr unterstützt.",
     "deprecated_config_update_hint": "Bitte aktualisieren, um die Kompatibilität sicherzustellen.",
-    "update_config": "Konfiguration aktualisieren…"
+    "update_config": "Konfiguration aktualisieren…",
+    "hour_height": "Hour height"
   }
 }

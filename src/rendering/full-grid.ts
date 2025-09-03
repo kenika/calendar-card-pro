@@ -31,7 +31,10 @@ export function renderFullGrid(
 ): TemplateResult {
   const dayCount = days.length;
 
-  return html`<div class="ccp-full-grid" style="--full-grid-days:${dayCount}">
+  return html`<div
+    class="ccp-full-grid"
+    style="--full-grid-days:${dayCount};--hour-height:${config.hour_height}"
+  >
     <div class="ccp-grid-header">
       ${renderCalendarHeader(config, activeCalendars, toggleCalendar)}
       <div class="ccp-nav-header">

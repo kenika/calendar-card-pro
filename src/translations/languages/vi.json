@@ -2,9 +2,38 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["CN", "T.2", "T.3", "T.4", "T.5", "T.6", "T.7"],
-  "fullDaysOfWeek": ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"],
-  "months": ["Th1", "Th2", "Th3", "Th4", "Th5", "Th6", "Th7", "Th8", "Th9", "Th10", "Th11", "Th12"],
+  "daysOfWeek": [
+    "CN",
+    "T.2",
+    "T.3",
+    "T.4",
+    "T.5",
+    "T.6",
+    "T.7"
+  ],
+  "fullDaysOfWeek": [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy"
+  ],
+  "months": [
+    "Th1",
+    "Th2",
+    "Th3",
+    "Th4",
+    "Th5",
+    "Th6",
+    "Th7",
+    "Th8",
+    "Th9",
+    "Th10",
+    "Th11",
+    "Th12"
+  ],
   "allDay": "cả ngày",
   "multiDay": "đến",
   "at": "lúc",
@@ -12,5 +41,8 @@
   "endsTomorrow": "kết thúc ngày mai",
   "noEvents": "Không có sự kiện sắp tới",
   "loading": "Đang tải sự kiện...",
-  "error": "Lỗi: Không tìm thấy lịch hoặc cấu hình không đúng"
+  "error": "Lỗi: Không tìm thấy lịch hoặc cấu hình không đúng",
+  "editor": {
+    "hour_height": "Hour height"
+  }
 }
