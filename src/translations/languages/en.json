@@ -13,6 +13,7 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
+  "today": "Today",
 
   "editor": {
     "calendar_entities": "Calendar Entities",

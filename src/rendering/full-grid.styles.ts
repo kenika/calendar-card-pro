@@ -21,6 +21,21 @@ export const fullGridStyles = css`
     flex-wrap: wrap;
   }
 
+  .ccp-nav-header {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .ccp-nav-btn {
+    padding: 4px 8px;
+    border: 1px solid var(--line-color);
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+  }
+
   .ccp-filter-btn {
     padding: 4px 8px;
     border: 1px solid var(--line-color);

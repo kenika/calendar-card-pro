@@ -11,6 +11,7 @@ import { calculateGridPositions, getEntitySetting } from '../utils/events';
 import * as FormatUtils from '../utils/format';
 import * as Weather from '../utils/weather';
 import { openEventDetail } from './event-detail';
+import * as Localize from '../translations/localize';
 
 const BUILD_TIMESTAMP = '__BUILD_TIMESTAMP__';
 
@@ -24,12 +25,25 @@ export function renderFullGrid(
   weather: Types.WeatherForecasts,
   activeCalendars: string[],
   toggleCalendar: (entity: string) => void,
+  navigateDays: (offset: number) => void,
+  resetToToday: () => void,
   hass: Types.Hass | null,
 ): TemplateResult {
   const dayCount = days.length;
 
   return html`<div class="ccp-full-grid" style="--full-grid-days:${dayCount}">
     ${renderCalendarHeader(config, activeCalendars, toggleCalendar)}
+    <div class="ccp-nav-header">
+      <button class="ccp-nav-btn" @click=${() => navigateDays(-config.days_to_show)}>
+        &lt;&lt;
+      </button>
+      <button class="ccp-nav-btn" @click=${() => resetToToday()}>
+        ${Localize.translate(language, 'today', 'Today')}
+      </button>
+      <button class="ccp-nav-btn" @click=${() => navigateDays(config.days_to_show)}>
+        &gt;&gt;
+      </button>
+    </div>
     <div class="ccp-weekday-header">
       <div class="ccp-time-axis-spacer"></div>
       ${days.map((d) => {
