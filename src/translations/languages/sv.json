@@ -2,9 +2,38 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["Sön", "Mån", "Tis", "Ons", "Tors", "Fre", "Lör"],
-  "fullDaysOfWeek": ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"],
-  "months": ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+  "daysOfWeek": [
+    "Sön",
+    "Mån",
+    "Tis",
+    "Ons",
+    "Tors",
+    "Fre",
+    "Lör"
+  ],
+  "fullDaysOfWeek": [
+    "Söndag",
+    "Måndag",
+    "Tisdag",
+    "Onsdag",
+    "Torsdag",
+    "Fredag",
+    "Lördag"
+  ],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Maj",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dec"
+  ],
   "allDay": "heldag",
   "multiDay": "till",
   "at": "vid",
@@ -225,6 +254,7 @@
     "deprecated_config_detected": "Föråldrade konfigurationsalternativ upptäckta.",
     "deprecated_config_explanation": "Vissa alternativ i din konfiguration stöds inte längre.",
     "deprecated_config_update_hint": "Uppdatera för att säkerställa kompatibilitet.",
-    "update_config": "Uppdatera konfiguration…"
+    "update_config": "Uppdatera konfiguration…",
+    "hour_height": "Hour height"
   }
 }

@@ -2,7 +2,15 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["Sun", "Mán", "Þri", "Mið", "Fim", "Fös", "Lau"],
+  "daysOfWeek": [
+    "Sun",
+    "Mán",
+    "Þri",
+    "Mið",
+    "Fim",
+    "Fös",
+    "Lau"
+  ],
   "fullDaysOfWeek": [
     "Sunnudagur",
     "Mánudagur",
@@ -12,7 +20,20 @@
     "Föstudagur",
     "Laugardagur"
   ],
-  "months": ["Jan", "Feb", "Mar", "Apr", "Maí", "Jún", "Júl", "Ágú", "Sep", "Okt", "Nóv", "Des"],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Maí",
+    "Jún",
+    "Júl",
+    "Ágú",
+    "Sep",
+    "Okt",
+    "Nóv",
+    "Des"
+  ],
   "allDay": "Allur dagurinn",
   "multiDay": "þar til",
   "at": "kl",
@@ -20,5 +41,8 @@
   "endsTomorrow": "lýkur á morgun",
   "noEvents": "Engir viðburðir á næstunni",
   "loading": "Hleður inn dagatal...",
-  "error": "Villa: Dagatalseining finnst ekki eða er vanstillt"
+  "error": "Villa: Dagatalseining finnst ekki eða er vanstillt",
+  "editor": {
+    "hour_height": "Hour height"
+  }
 }

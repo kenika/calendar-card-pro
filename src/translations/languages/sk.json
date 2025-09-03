@@ -2,9 +2,38 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["Ne", "Po", "Ut", "St", "Št", "Pi", "So"],
-  "fullDaysOfWeek": ["Nedeľa", "Pondelok", "Utorok", "Streda", "Štvrtok", "Piatok", "Sobota"],
-  "months": ["Jan", "Feb", "Mar", "Apr", "Máj", "Jún", "Júl", "Aug", "Sep", "Okt", "Nov", "Dec"],
+  "daysOfWeek": [
+    "Ne",
+    "Po",
+    "Ut",
+    "St",
+    "Št",
+    "Pi",
+    "So"
+  ],
+  "fullDaysOfWeek": [
+    "Nedeľa",
+    "Pondelok",
+    "Utorok",
+    "Streda",
+    "Štvrtok",
+    "Piatok",
+    "Sobota"
+  ],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Máj",
+    "Jún",
+    "Júl",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dec"
+  ],
   "allDay": "celý deň",
   "multiDay": "do",
   "at": "v",
@@ -53,7 +82,6 @@
     "entity_show_location_note": "Zobraziť alebo skryť miesto udalostí v tomto kalendári.",
     "split_multiday_events": "Rozdeľovať niekoľkodňové udalosti",
     "entity_split_multiday_note": "Rozdeliť niekoľkodňové udalosti v tomto kalendári do jednotlivých dní.",
-
     "core_settings": "Globálne nastavenia",
     "time_range": "Časový rozsah",
     "time_range_note": "Tento časový rozsah nastavuje režim normálneho zobrazenia, ktorý sa stane rozšíreným zobrazením, ak je nakonfigurovaný kompaktný režim.",
@@ -86,7 +114,6 @@
     "custom": "Vlastný",
     "12h": "12 hod.",
     "24h": "24 hod.",
-
     "appearance_layout": "Vzhľad a rozloženie",
     "title_styling": "Štýl názvu",
     "title": "Názov",
@@ -108,7 +135,6 @@
     "day_spacing": "Medzery medzi dňami",
     "event_spacing": "Medzery medzi udalosťami",
     "additional_card_spacing": "Dodatočné medzery karty",
-
     "date_display": "Zobrazenie dátumu",
     "vertical_alignment": "Zvislé zarovnanie",
     "date_vertical_alignment": "Zvislé zarovnanie dátumu",
@@ -170,7 +196,6 @@
     "show_month_separator": "Zobrazovať oddeľovač mesiacov",
     "month_separator_width": "Šírka oddeľovača mesiacov",
     "month_separator_color": "Farba oddeľovača mesiacov",
-
     "event_display": "Zobrazenie udalosti",
     "event_title": "Názov udalosti",
     "event_font_size": "Veľkosť písma udalosti",
@@ -195,7 +220,6 @@
     "progress_bar_height": "Výška lišty priebehu",
     "progress_bar_width": "Šírka lišty priebehu",
     "multiday_event_handling": "Spracovanie viacdenných udalostí",
-
     "weather_integration": "Integrácia s počasím",
     "weather_entity_position": "Entita počasia a umiestnenie",
     "weather_entity": "Entita počasia",
@@ -212,7 +236,6 @@
     "color": "Farba",
     "event_row_weather": "Počasie v riadku s udalosťou",
     "show_temp": "Zobraziť teplotu",
-
     "interactions": "Interakcie",
     "tap_action": "Akcia kliknutia",
     "hold_action": "Akcia podržania",
@@ -228,10 +251,10 @@
     "refresh_settings": "Nastavenie obnovenia",
     "refresh_interval": "Interval obnovenia (minúty)",
     "refresh_on_navigate": "Obnoviť pri navigovaní späť",
-
     "deprecated_config_detected": "Boli zistené zastarané možnosti konfigurácie.",
     "deprecated_config_explanation": "Niektoré voľby vo vašej konfigurácií už nie sú podporované.",
     "deprecated_config_update_hint": "Prosím, aktualizujte ich, aby ste tak zaistili kompatibilitu.",
-    "update_config": "Aktualizovať konfiguráciu…"
+    "update_config": "Aktualizovať konfiguráciu…",
+    "hour_height": "Hour height"
   }
 }

@@ -9,7 +9,7 @@ export const fullGridStyles = css`
     display: flex;
     flex-direction: column;
     --time-axis-width: 50px;
-    --hour-height: 60px;
+    --hour-height: 30px;
     --line-color: var(--calendar-card-line-color-vertical);
   }
 
@@ -81,6 +81,11 @@ export const fullGridStyles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-left: 1px solid var(--line-color);
+  }
+
+  .ccp-weekday-header > .ccp-weekday-cell:nth-child(2) {
+    border-left: none;
   }
 
   .ccp-weekday-weather {
@@ -115,6 +120,7 @@ export const fullGridStyles = css`
 
   .ccp-all-day-cell {
     border-bottom: 1px solid var(--line-color);
+    border-left: 1px solid var(--line-color);
     display: flex;
     flex-direction: column;
     gap: var(--calendar-card-event-spacing);
@@ -124,6 +130,10 @@ export const fullGridStyles = css`
         var(--calendar-card-event-spacing) * 4
     );
     overflow-y: auto;
+  }
+
+  .ccp-all-day-row > .ccp-all-day-cell:nth-child(2) {
+    border-left: none;
   }
 
   .ccp-all-day-cell .ccp-event-block {

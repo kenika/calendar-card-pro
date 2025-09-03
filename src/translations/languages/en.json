@@ -1,7 +1,36 @@
 {
-  "daysOfWeek": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  "fullDaysOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-  "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "daysOfWeek": [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ],
+  "fullDaysOfWeek": [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ],
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
   "allDay": "all day",
   "multiDay": "until",
   "at": "at",
@@ -14,7 +43,6 @@
   "full_grid": "Full grid view",
   "list": "List",
   "today": "Today",
-
   "editor": {
     "calendar_entities": "Calendar Entities",
     "calendar": "Calendar",
@@ -55,7 +83,6 @@
     "entity_show_location_note": "Show or hide event locations for this calendar only.",
     "split_multiday_events": "Split multi-day events",
     "entity_split_multiday_note": "Split multi-day events into individual day segments for this calendar.",
-
     "core_settings": "Core Settings",
     "view": "View",
     "list": "List",
@@ -91,7 +118,6 @@
     "custom": "Custom",
     "12h": "12-hour",
     "24h": "24-hour",
-
     "appearance_layout": "Appearance & Layout",
     "title_styling": "Title Styling",
     "title": "Title",
@@ -113,7 +139,6 @@
     "day_spacing": "Day spacing",
     "event_spacing": "Event spacing",
     "additional_card_spacing": "Additional card spacing",
-
     "date_display": "Date Display",
     "vertical_alignment": "Vertical Alignment",
     "date_vertical_alignment": "Date vertical alignment",
@@ -175,7 +200,6 @@
     "show_month_separator": "Show month separator",
     "month_separator_width": "Month separator width",
     "month_separator_color": "Month separator color",
-
     "event_display": "Event Display",
     "event_title": "Event Title",
     "event_font_size": "Event font size",
@@ -200,7 +224,6 @@
     "progress_bar_height": "Progress bar height",
     "progress_bar_width": "Progress bar width",
     "multiday_event_handling": "Multi-day Event Handling",
-
     "weather_integration": "Weather Integration",
     "weather_entity_position": "Weather Entity & Position",
     "weather_entity": "Weather entity",
@@ -217,7 +240,6 @@
     "color": "Color",
     "event_row_weather": "Event Row Weather",
     "show_temp": "Show temperature",
-
     "interactions": "Interactions",
     "tap_action": "Tap Action",
     "hold_action": "Hold Action",
@@ -233,10 +255,10 @@
     "refresh_settings": "Refresh Settings",
     "refresh_interval": "Refresh interval (minutes)",
     "refresh_on_navigate": "Refresh when navigating back",
-
     "deprecated_config_detected": "Deprecated config options detected.",
     "deprecated_config_explanation": "Some options in your configuration are no longer supported.",
     "deprecated_config_update_hint": "Please update to ensure compatibility.",
-    "update_config": "Update config…"
+    "update_config": "Update config…",
+    "hour_height": "Hour height"
   }
 }

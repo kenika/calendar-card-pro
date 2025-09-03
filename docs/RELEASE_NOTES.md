@@ -17,6 +17,8 @@
 - Event popup resized to 25% width/height with stacked weather details and scrollable description.
 - Event detail pop-up now shows calendar labels, description, and location with weather based on the next full hour and configurable styling.
 - Full-grid view keeps its header visible while only the time grid scrolls, and scroll position is preserved when navigating days.
+- Vertical grid lines now extend through the weekday header and all-day area in full-grid view.
+- Added `hour_height` option (default `30px`) to control the height of each hour row in full-grid view.
 
 ## Fixed
 - Event detail pop-up now correctly displays location and description data even when `show_location` hides locations in event blocks.

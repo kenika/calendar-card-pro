@@ -763,6 +763,7 @@ export class CalendarCardProEditor extends LitElement {
             <h3>${this._getTranslation('spacing_alignment')}</h3>
             ${this.addTextField('day_spacing', this._getTranslation('day_spacing'))}
             ${this.addTextField('event_spacing', this._getTranslation('event_spacing'))}
+            ${this.addTextField('hour_height', this._getTranslation('hour_height'))}
             ${this.addTextField(
               'additional_card_spacing',
               this._getTranslation('additional_card_spacing'),

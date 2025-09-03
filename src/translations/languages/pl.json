@@ -2,7 +2,15 @@
   "view": "View",
   "full_grid": "Full grid view",
   "list": "List",
-  "daysOfWeek": ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "Sb"],
+  "daysOfWeek": [
+    "Nd",
+    "Pn",
+    "Wt",
+    "Śr",
+    "Cz",
+    "Pt",
+    "Sb"
+  ],
   "fullDaysOfWeek": [
     "niedzieli",
     "poniedziałku",
@@ -12,7 +20,20 @@
     "piątku",
     "soboty"
   ],
-  "months": ["sty", "lut", "mar", "kwi", "maj", "cze", "lip", "sie", "wrz", "paź", "lis", "gru"],
+  "months": [
+    "sty",
+    "lut",
+    "mar",
+    "kwi",
+    "maj",
+    "cze",
+    "lip",
+    "sie",
+    "wrz",
+    "paź",
+    "lis",
+    "gru"
+  ],
   "allDay": "cały dzień",
   "multiDay": "do",
   "at": "o",
@@ -20,5 +41,8 @@
   "endsTomorrow": "kończy się jutro",
   "noEvents": "Brak nadchodzących wydarzeń",
   "loading": "Ładowanie wydarzeń z kalendarza...",
-  "error": "Błąd: encja kalendarza nie została znaleziona lub jest niepoprawnie skonfigurowana"
+  "error": "Błąd: encja kalendarza nie została znaleziona lub jest niepoprawnie skonfigurowana",
+  "editor": {
+    "hour_height": "Hour height"
+  }
 }

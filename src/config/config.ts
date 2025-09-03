@@ -40,6 +40,7 @@ export const DEFAULT_CONFIG: Types.Config = {
   day_spacing: '10px',
   event_spacing: '4px',
   additional_card_spacing: '0px',
+  hour_height: '30px',
   height: 'auto',
   max_height: 'none',
 
