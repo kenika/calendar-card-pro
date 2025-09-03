@@ -668,6 +668,8 @@ The date column appears on the left side of each day's events and helps users qu
 - **Weekend days** (Saturday and Sunday) using the `weekend_*` parameters
 - **Today's date** using the `today_*` parameters
 
+In full-grid view, `weekday_font_size`, `day_font_size`, and `month_font_size` also adjust the text in the weekday header.
+
 When special styling parameters are not specified, they will inherit from the base styling. If today falls on a weekend, today styling takes precedence over weekend styling.
 
 #### 🌟 Today Indicator
