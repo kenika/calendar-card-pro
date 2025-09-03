@@ -136,7 +136,10 @@ function renderCalendarHeader(
  */
 function renderTimeAxis(): TemplateResult {
   return html`<div class="ccp-time-axis">
-    ${Array.from({ length: 24 }, (_, i) => html`<div>${i.toString().padStart(2, '0')}:00</div>`)}
+    ${Array.from(
+      { length: 24 },
+      (_, i) => html`<div><span>${i.toString().padStart(2, '0')}:00</span></div>`,
+    )}
   </div>`;
 }
 
