@@ -553,6 +553,28 @@ class CalendarCardPro extends LitElement {
   }
 
   /**
+   * Shift the calendar view by the configured number of days
+   */
+  navigateDays(offset: number): void {
+    const currentStart = EventUtils.getTimeWindow(
+      this.config.days_to_show,
+      this.config.start_date,
+    ).start;
+    currentStart.setDate(currentStart.getDate() + offset);
+    const newStart = currentStart.toISOString().split('T')[0];
+    this.config = { ...this.config, start_date: newStart };
+    this.updateEvents(true);
+  }
+
+  /**
+   * Reset the calendar view to today
+   */
+  resetToToday(): void {
+    this.config = { ...this.config, start_date: undefined };
+    this.updateEvents(true);
+  }
+
+  /**
    * Handle user action
    */
   handleAction(actionConfig: Types.ActionConfig): void {
@@ -606,6 +628,8 @@ class CalendarCardPro extends LitElement {
               this.weatherForecasts,
               this.activeCalendars,
               (entity: string) => this.toggleCalendar(entity),
+              (offset: number) => this.navigateDays(offset),
+              () => this.resetToToday(),
               this.safeHass,
             )
           : Render.renderGroupedEvents(
@@ -626,6 +650,8 @@ class CalendarCardPro extends LitElement {
               this.weatherForecasts,
               this.activeCalendars,
               (entity: string) => this.toggleCalendar(entity),
+              (offset: number) => this.navigateDays(offset),
+              () => this.resetToToday(),
               this.safeHass,
             )
           : Render.renderGroupedEvents(
