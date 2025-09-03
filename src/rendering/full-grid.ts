@@ -103,12 +103,12 @@ export function renderFullGrid(
             ${dailyForecast
               ? html`<div
                   class="ccp-weekday-weather"
-                  style="font-size:${config.weather?.date?.font_size || '12px'};color:${config
-                    .weather?.date?.color || 'var(--primary-text-color)'};"
+                  style="font-size:var(--calendar-card-weather-date-font-size);color:var(--calendar-card-weather-date-color);"
                 >
                   ${config.weather?.date?.show_conditions !== false
                     ? html`<ha-icon
                         style="--mdc-icon-size:${config.weather?.date?.icon_size || '14px'};"
+
                         .icon=${dailyForecast.icon}
                       ></ha-icon>`
                     : ''}
