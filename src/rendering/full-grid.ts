@@ -59,34 +59,65 @@ export function renderFullGrid(
             showDateWeather && weather?.daily
               ? Weather.findDailyForecast(date, weather.daily)
               : undefined;
+          const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+          const isToday = new Date().toDateString() === date.toDateString();
+
+          let weekdayColor = config.weekday_color;
+          let dayColor = config.day_color;
+          let monthColor = config.month_color;
+
+          if (isWeekend) {
+            weekdayColor = config.weekend_weekday_color || weekdayColor;
+            dayColor = config.weekend_day_color || dayColor;
+            monthColor = config.weekend_month_color || monthColor;
+          }
+
+          if (isToday) {
+            weekdayColor = config.today_weekday_color || weekdayColor;
+            dayColor = config.today_day_color || dayColor;
+            monthColor = config.today_month_color || monthColor;
+          }
+
+          const showLow =
+            config.weather?.date?.show_low_temp !== false && dailyForecast?.templow !== undefined;
+          const showHigh = config.weather?.date?.show_high_temp !== false;
+
           return html`<div class="ccp-weekday-cell">
             <div class="ccp-weekday-label">
-              ${d.weekday} ${d.day}${config.show_month ? ` ${d.month}` : ''}
+              <span
+                class="weekday"
+                style="font-size:${config.weekday_font_size};color:${weekdayColor}"
+                >${d.weekday}</span
+              >
+              <span class="day" style="font-size:${config.day_font_size};color:${dayColor}"
+                >${d.day}</span
+              >
+              ${config.show_month
+                ? html`<span
+                    class="month"
+                    style="font-size:${config.month_font_size};color:${monthColor}"
+                    >${d.month}</span
+                  >`
+                : ''}
             </div>
             ${dailyForecast
               ? html`<div
                   class="ccp-weekday-weather"
-                  style="font-size:${config.weather?.date?.font_size || '12px'};color:${config
-                    .weather?.date?.color || 'var(--primary-text-color)'};"
+                  style="font-size:var(--calendar-card-weather-date-font-size);color:var(--calendar-card-weather-date-color);"
                 >
                   ${config.weather?.date?.show_conditions !== false
                     ? html`<ha-icon
-                        style="width:${config.weather?.date?.icon_size || '14px'};height:${config
-                          .weather?.date?.icon_size || '14px'};"
+                        style="--mdc-icon-size:var(--calendar-card-weather-date-icon-size);"
                         .icon=${dailyForecast.icon}
                       ></ha-icon>`
                     : ''}
                   <div class="temps">
-                    ${config.weather?.date?.show_low_temp !== false &&
-                    dailyForecast.templow !== undefined
-                      ? html`<span class="weather-temp-low">${dailyForecast.templow}°</span>`
+                    ${showLow
+                      ? html`<span class="weather-temp-low"
+                          >${dailyForecast.templow}°${showHigh ? '/' : ''}</span
+                        >`
                       : ''}
-                    ${config.weather?.date?.show_low_temp !== false &&
-                    config.weather?.date?.show_high_temp !== false &&
-                    dailyForecast.templow !== undefined
-                      ? html`<span>/</span>`
-                      : ''}
-                    ${config.weather?.date?.show_high_temp !== false
+                    ${showHigh
                       ? html`<span class="weather-temp-high">${dailyForecast.temperature}°</span>`
                       : ''}
                   </div>
