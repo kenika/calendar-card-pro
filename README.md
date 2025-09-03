@@ -270,7 +270,8 @@ Each calendar gets a filter button in the header so you can toggle its events on
 - Weekend and today columns can be tinted with `weekend_day_color` and `today_day_color`.
 - Navigate through days with `<<`, `Today`, and `>>` buttons to move backward, forward, or return to the current date.
 - Event blocks respect `show_time`, `show_single_allday_time`, `show_end_time`, and `show_location` configuration.
-- Weekday headers can show daily weather (icon, high, low) aligned to the top-right.
+- The all-day events area expands to fit up to three events per day and becomes scrollable when more are present.
+- Weekday headers can show daily weather (icon, high, low) in a row beneath the date, with the high temperature highlighted in red.
 - Tapping an event with `tap_action: expand` opens a popup (25% width/height) with stacked weather information, full location, and a scrollable description.
 - Hourly grid lines span the time axis and day columns to provide temporal context.
 

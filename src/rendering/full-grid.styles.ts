@@ -69,20 +69,17 @@ export const fullGridStyles = css`
   }
 
   .ccp-weekday-cell {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .ccp-weekday-weather {
-    position: absolute;
-    top: 2px;
-    right: 4px;
+    margin-top: 2px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .ccp-weekday-weather ha-icon {
-    margin-right: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
   }
 
   .ccp-weekday-weather .temps {
@@ -94,10 +91,13 @@ export const fullGridStyles = css`
     color: blue;
   }
 
+  .ccp-weekday-weather .weather-temp-high {
+    color: red;
+  }
+
   .ccp-all-day-row {
     display: grid;
     grid-template-columns: var(--time-axis-width) repeat(var(--full-grid-days, 7), 1fr);
-    min-height: 24px;
   }
 
   .ccp-time-axis-spacer {
@@ -105,12 +105,16 @@ export const fullGridStyles = css`
   }
 
   .ccp-all-day-cell {
-    height: 100%;
     border-bottom: 1px solid var(--line-color);
     display: flex;
     flex-direction: column;
     gap: var(--calendar-card-event-spacing);
     padding: var(--calendar-card-event-spacing);
+    max-height: calc(
+      (var(--calendar-card-font-size-event) + var(--calendar-card-event-spacing) * 2) * 3 +
+        var(--calendar-card-event-spacing) * 4
+    );
+    overflow-y: auto;
   }
 
   .ccp-all-day-cell .ccp-event-block {
