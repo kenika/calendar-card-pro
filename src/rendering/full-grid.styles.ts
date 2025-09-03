@@ -75,6 +75,10 @@ export const fullGridStyles = css`
 
   .ccp-weekday-label {
     padding: 4px 0;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
   }
 
   .ccp-weekday-cell {
