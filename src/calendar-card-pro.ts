@@ -106,6 +106,7 @@ class CalendarCardPro extends LitElement {
   private _refreshTimerId?: number;
   private _lastUpdateTime = Date.now();
   private _weatherUnsubscribers: Array<() => void> = [];
+  private _gridScrollTop = 0;
 
   // Interaction state
   private _activePointerId: number | null = null;
@@ -495,6 +496,8 @@ class CalendarCardPro extends LitElement {
   async updateEvents(force = false): Promise<void> {
     Logger.debug(`Updating events (force=${force})`);
 
+    this._saveScrollPosition();
+
     // Skip update if no Home Assistant connection or no entities
     if (!this.safeHass || !this.config.entities.length) {
       this.isLoading = false;
@@ -530,6 +533,9 @@ class CalendarCardPro extends LitElement {
       this.isLoading = false;
     }
 
+    await this.updateComplete;
+    this._restoreScrollPosition();
+
     // Ensure we have weather forecast subscriptions too
     this._setupWeatherSubscriptions();
   }
@@ -556,6 +562,7 @@ class CalendarCardPro extends LitElement {
    * Shift the calendar view by the configured number of days
    */
   navigateDays(offset: number): void {
+    this._saveScrollPosition();
     const currentStart = EventUtils.getTimeWindow(
       this.config.days_to_show,
       this.config.start_date,
@@ -570,8 +577,23 @@ class CalendarCardPro extends LitElement {
    * Reset the calendar view to today
    */
   resetToToday(): void {
+    this._saveScrollPosition();
     this.config = { ...this.config, start_date: undefined };
     this.updateEvents(true);
+  }
+
+  private _saveScrollPosition(): void {
+    const container = this.shadowRoot?.querySelector('.content-container') as HTMLElement | null;
+    if (container) {
+      this._gridScrollTop = container.scrollTop;
+    }
+  }
+
+  private _restoreScrollPosition(): void {
+    const container = this.shadowRoot?.querySelector('.content-container') as HTMLElement | null;
+    if (container) {
+      container.scrollTop = this._gridScrollTop;
+    }
   }
 
   /**
