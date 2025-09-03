@@ -16,7 +16,7 @@ export const fullGridStyles = css`
   .ccp-grid-header {
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 1;
     background: var(--card-background-color, white);
     display: flex;
     flex-direction: column;
@@ -144,6 +144,7 @@ export const fullGridStyles = css`
     height: calc(var(--calendar-card-font-size-event) + var(--calendar-card-event-spacing) * 2);
     margin: 0;
     font-size: var(--calendar-card-font-size-event);
+    line-height: var(--calendar-card-font-size-event);
   }
 
   .ccp-main-grid {

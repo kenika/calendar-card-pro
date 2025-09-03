@@ -25,6 +25,8 @@
 - Weather condition icons in the event pop-up now respect `weather.event.show_conditions`.
 - Calendar source badges in the event pop-up match header styling and no longer overflow the dialog.
 - Hour labels align with the hourly grid and grid lines stop before the time labels.
+- Full-grid header no longer overlays configuration dialogs by reducing its z-index.
+- All-day event pills now display full titles by matching line-height to font size.
 
 # Calendar Card Pro v3.1.0
 
