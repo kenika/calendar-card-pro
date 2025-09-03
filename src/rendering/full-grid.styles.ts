@@ -137,12 +137,27 @@ export const fullGridStyles = css`
     flex-direction: column;
     font-size: 12px;
     border-right: 1px solid var(--line-color);
+    position: relative;
   }
 
   .ccp-time-axis > div {
     height: var(--hour-height);
     border-top: 1px solid var(--line-color);
     box-sizing: border-box;
+    position: relative;
+  }
+
+  .ccp-time-axis > div:first-child {
+    border-top: none;
+  }
+
+  .ccp-time-axis > div span {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    transform: translateY(-50%);
+    background: var(--card-background-color, white);
+    padding: 0 4px;
   }
 
   .ccp-day-columns {
