@@ -16,6 +16,7 @@
 - All-day events area expands with the number of events (up to three) and becomes scrollable when more are present.
 - Event popup resized to 25% width/height with stacked weather details and scrollable description.
 - Event detail pop-up now shows calendar labels, description, and location with weather based on the next full hour and configurable styling.
+- Full-grid view keeps its header visible while only the time grid scrolls, and scroll position is preserved when navigating days.
 
 ## Fixed
 - Event detail pop-up now correctly displays location and description data even when `show_location` hides locations in event blocks.

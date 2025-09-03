@@ -32,68 +32,70 @@ export function renderFullGrid(
   const dayCount = days.length;
 
   return html`<div class="ccp-full-grid" style="--full-grid-days:${dayCount}">
-    ${renderCalendarHeader(config, activeCalendars, toggleCalendar)}
-    <div class="ccp-nav-header">
-      <button class="ccp-nav-btn" @click=${() => navigateDays(-config.days_to_show)}>
-        &lt;&lt;
-      </button>
-      <button class="ccp-nav-btn" @click=${() => resetToToday()}>
-        ${Localize.translate(language, 'today', 'Today')}
-      </button>
-      <button class="ccp-nav-btn" @click=${() => navigateDays(config.days_to_show)}>
-        &gt;&gt;
-      </button>
-    </div>
-    <div class="ccp-weekday-header">
-      <div class="ccp-time-axis-spacer"></div>
-      ${days.map((d) => {
-        const date = new Date(d.timestamp);
-        const showDateWeather =
-          config.weather?.entity &&
-          (config.weather.position === 'date' || config.weather.position === 'both');
-        const dailyForecast =
-          showDateWeather && weather?.daily
-            ? Weather.findDailyForecast(date, weather.daily)
-            : undefined;
-        return html`<div class="ccp-weekday-cell">
-          <div class="ccp-weekday-label">
-            ${d.weekday} ${d.day}${config.show_month ? ` ${d.month}` : ''}
-          </div>
-          ${dailyForecast
-            ? html`<div
-                class="ccp-weekday-weather"
-                style="font-size:${config.weather?.date?.font_size || '12px'};color:${config.weather
-                  ?.date?.color || 'var(--primary-text-color)'};"
-              >
-                ${config.weather?.date?.show_conditions !== false
-                  ? html`<ha-icon
-                      style="width:${config.weather?.date?.icon_size || '14px'};height:${config
-                        .weather?.date?.icon_size || '14px'};"
-                      .icon=${dailyForecast.icon}
-                    ></ha-icon>`
-                  : ''}
-                <div class="temps">
-                  ${config.weather?.date?.show_low_temp !== false &&
-                  dailyForecast.templow !== undefined
-                    ? html`<span class="weather-temp-low">${dailyForecast.templow}°</span>`
+    <div class="ccp-grid-header">
+      ${renderCalendarHeader(config, activeCalendars, toggleCalendar)}
+      <div class="ccp-nav-header">
+        <button class="ccp-nav-btn" @click=${() => navigateDays(-config.days_to_show)}>
+          &lt;&lt;
+        </button>
+        <button class="ccp-nav-btn" @click=${() => resetToToday()}>
+          ${Localize.translate(language, 'today', 'Today')}
+        </button>
+        <button class="ccp-nav-btn" @click=${() => navigateDays(config.days_to_show)}>
+          &gt;&gt;
+        </button>
+      </div>
+      <div class="ccp-weekday-header">
+        <div class="ccp-time-axis-spacer"></div>
+        ${days.map((d) => {
+          const date = new Date(d.timestamp);
+          const showDateWeather =
+            config.weather?.entity &&
+            (config.weather.position === 'date' || config.weather.position === 'both');
+          const dailyForecast =
+            showDateWeather && weather?.daily
+              ? Weather.findDailyForecast(date, weather.daily)
+              : undefined;
+          return html`<div class="ccp-weekday-cell">
+            <div class="ccp-weekday-label">
+              ${d.weekday} ${d.day}${config.show_month ? ` ${d.month}` : ''}
+            </div>
+            ${dailyForecast
+              ? html`<div
+                  class="ccp-weekday-weather"
+                  style="font-size:${config.weather?.date?.font_size || '12px'};color:${config
+                    .weather?.date?.color || 'var(--primary-text-color)'};"
+                >
+                  ${config.weather?.date?.show_conditions !== false
+                    ? html`<ha-icon
+                        style="width:${config.weather?.date?.icon_size || '14px'};height:${config
+                          .weather?.date?.icon_size || '14px'};"
+                        .icon=${dailyForecast.icon}
+                      ></ha-icon>`
                     : ''}
-                  ${config.weather?.date?.show_low_temp !== false &&
-                  config.weather?.date?.show_high_temp !== false &&
-                  dailyForecast.templow !== undefined
-                    ? html`<span>/</span>`
-                    : ''}
-                  ${config.weather?.date?.show_high_temp !== false
-                    ? html`<span class="weather-temp-high">${dailyForecast.temperature}°</span>`
-                    : ''}
-                </div>
-              </div>`
-            : ''}
-        </div>`;
-      })}
-    </div>
-    <div class="ccp-all-day-row">
-      <div class="ccp-time-axis-spacer"></div>
-      ${days.map((d) => renderAllDayCell(d, config, language, weather, hass))}
+                  <div class="temps">
+                    ${config.weather?.date?.show_low_temp !== false &&
+                    dailyForecast.templow !== undefined
+                      ? html`<span class="weather-temp-low">${dailyForecast.templow}°</span>`
+                      : ''}
+                    ${config.weather?.date?.show_low_temp !== false &&
+                    config.weather?.date?.show_high_temp !== false &&
+                    dailyForecast.templow !== undefined
+                      ? html`<span>/</span>`
+                      : ''}
+                    ${config.weather?.date?.show_high_temp !== false
+                      ? html`<span class="weather-temp-high">${dailyForecast.temperature}°</span>`
+                      : ''}
+                  </div>
+                </div>`
+              : ''}
+          </div>`;
+        })}
+      </div>
+      <div class="ccp-all-day-row">
+        <div class="ccp-time-axis-spacer"></div>
+        ${days.map((d) => renderAllDayCell(d, config, language, weather, hass))}
+      </div>
     </div>
     <div class="ccp-main-grid">
       ${renderTimeAxis()}

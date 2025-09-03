@@ -13,6 +13,15 @@ export const fullGridStyles = css`
     --line-color: var(--calendar-card-line-color-vertical);
   }
 
+  .ccp-grid-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--card-background-color, white);
+    display: flex;
+    flex-direction: column;
+  }
+
   .ccp-calendar-header {
     display: flex;
     gap: 4px;
