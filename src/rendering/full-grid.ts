@@ -107,7 +107,8 @@ export function renderFullGrid(
                 >
                   ${config.weather?.date?.show_conditions !== false
                     ? html`<ha-icon
-                        style="--mdc-icon-size:var(--calendar-card-weather-date-icon-size);"
+                        style="--mdc-icon-size:${config.weather?.date?.icon_size || '14px'};"
+
                         .icon=${dailyForecast.icon}
                       ></ha-icon>`
                     : ''}
