@@ -19,6 +19,9 @@
 
 ## Fixed
 - Event detail pop-up now correctly displays location and description data even when `show_location` hides locations in event blocks.
+- Weather condition icons in the event pop-up now respect `weather.event.show_conditions`.
+- Calendar source badges in the event pop-up match header styling and no longer overflow the dialog.
+- Hour labels align with the hourly grid and grid lines stop before the time labels.
 
 # Calendar Card Pro v3.1.0
 
