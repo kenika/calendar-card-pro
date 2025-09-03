@@ -12,7 +12,8 @@
 - Added sizing CSS variables (`--time-axis-width`, `--hour-height`) and event positioning vars (`--col`, `--start`, `--end`, `--lane`, `--lanes`) for lane-aware widths.
 - Improved lane calculation so only overlapping events share lanes while independent events occupy full width.
 - Added a subtle 2% margin around event blocks for clearer separation.
-- Weekday headers can show daily weather aligned to the top-right (icon, high, low).
+- Weekday headers can show daily weather in a row beneath the date (icon, high, low) with the high temperature highlighted in red.
+- All-day events area expands with the number of events (up to three) and becomes scrollable when more are present.
 - Event popup resized to 25% width/height with stacked weather details and scrollable description.
 - Event detail pop-up now shows calendar labels, description, and location with weather based on the next full hour and configurable styling.
 

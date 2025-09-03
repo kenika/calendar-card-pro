@@ -207,7 +207,7 @@ function renderAllDayCell(
   weather: Types.WeatherForecasts,
   hass: Types.Hass | null,
 ): TemplateResult {
-  const allDayEvents = day.events.filter((e) => !e.start.dateTime && !e._isEmptyDay).slice(0, 3);
+  const allDayEvents = day.events.filter((e) => !e.start.dateTime && !e._isEmptyDay);
   return html`<div class="ccp-all-day-cell">
     ${allDayEvents.map((ev) => {
       const eventColor = ev._matchedConfig?.color || config.event_color;
